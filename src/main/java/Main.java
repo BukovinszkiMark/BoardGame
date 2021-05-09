@@ -1,3 +1,4 @@
+import UI.BoardGameApplication;
 import javafx.application.Application;
 
 public class Main {

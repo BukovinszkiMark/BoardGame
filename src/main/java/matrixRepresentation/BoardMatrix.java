@@ -1,3 +1,5 @@
+package matrixRepresentation;
+
 public class BoardMatrix {
     /*
     matrix[row][column]
@@ -7,6 +9,7 @@ public class BoardMatrix {
     'r' = red
     'b' = blue
     'w' = wall
+    's' = selected
      */
 
     private char[][] matrix;
@@ -31,6 +34,10 @@ public class BoardMatrix {
 
     public char get(int row, int column) {
         return matrix[row][column];
+    }
+
+    public void set(int row, int column, char c) {
+        matrix[row][column] = c;
     }
 
 }
