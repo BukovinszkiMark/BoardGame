@@ -11,8 +11,8 @@ import org.tinylog.Logger;
 import java.io.IOException;
 
 public class NameInputHandler {
-    String redName;
-    String blueName;
+    public String redName;
+    public String blueName;
 
     private TextField redInput;
     private TextField blueInput;

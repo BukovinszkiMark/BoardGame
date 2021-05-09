@@ -4,8 +4,8 @@ import org.tinylog.Logger;
 
 public class MouseClickHandler {
 
-    BoardMatrix matrix;
-    TurnHandler turnHandler;
+    private BoardMatrix matrix;
+    public TurnHandler turnHandler;
 
     boolean selectionOn = false;
     char selectionColor;
@@ -37,17 +37,17 @@ public class MouseClickHandler {
     }
 
     public void place(int row, int column) {
-        boolean isValid = false;
+        boolean canPlace = false;
         for (int i = row-1; i<=row+1; i++) {
             for (int j = column-1; j<=column+1; j++) {
-                if( 0<=i && i<=5 && 0<=j && j<=5 ) {
+                if( matrix.exists(i, j) ) {
                     if (matrix.get(i, j) == turnHandler.player()) {
-                        isValid = true;
+                        canPlace = true;
                     }
                 }
             }
         }
-        if(isValid){
+        if(canPlace){
             matrix.set(row, column, turnHandler.player());
             Logger.trace("New piece placed at: (%d,%d)".formatted(row, column));
             changeSurroundings(row, column);
@@ -82,7 +82,7 @@ public class MouseClickHandler {
     public void changeSurroundings(int row, int column) {
         for (int i = row-1; i<=row+1; i++) {
             for (int j = column-1; j<=column+1; j++) {
-                if( 0<=i && i<=5 && 0<=j && j<=5 ) {
+                if(matrix.exists(i, j)) {
                     if (matrix.get(i, j) == turnHandler.enemy()) {
                         matrix.set(i, j, turnHandler.player());
                     }

@@ -16,6 +16,8 @@ public class BoardGameController {
     private MouseClickHandler mouseClickHandler;
     private NameInputHandler nameInputHandler;
 
+    private boolean stopGameOverGEneration = false;
+
     @FXML
     private GridPane board;
 
@@ -31,7 +33,7 @@ public class BoardGameController {
             }
         }
 
-        matrix = new BoardMatrix(board.getRowCount(), board.getColumnCount());
+        matrix = new BoardMatrix();
         mouseClickHandler = new MouseClickHandler(this.matrix);
         updateBoardFromMatrix(matrix);
     }
@@ -69,7 +71,10 @@ public class BoardGameController {
                 case 's':{circle.setFill(Color.YELLOWGREEN);break;}
                 case 'w':{square.getStyleClass().set(0, "wall");break;}
             }
+            if(matrix.gameOverCheck(mouseClickHandler.turnHandler.player()) && !stopGameOverGEneration) {
+                GameOverHandler gameOverHandler = new GameOverHandler(mouseClickHandler.turnHandler.player(), nameInputHandler, matrix);
+                stopGameOverGEneration = true;
+            }
+            }
         }
     }
-
-}
