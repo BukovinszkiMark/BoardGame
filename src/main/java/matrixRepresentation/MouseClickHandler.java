@@ -1,15 +1,8 @@
 package matrixRepresentation;
 
-import javafx.scene.paint.Color;
+import org.tinylog.Logger;
 
 public class MouseClickHandler {
-    /*
-    possible actions:
-    -click on square to put piece
-    -click on piece to move it
-    -invalid action
-     */
-
 
     BoardMatrix matrix;
     TurnHandler turnHandler;
@@ -56,6 +49,7 @@ public class MouseClickHandler {
         }
         if(isValid){
             matrix.set(row, column, turnHandler.player());
+            Logger.trace("New piece placed at: (%d,%d)".formatted(row, column));
             changeSurroundings(row, column);
             turnHandler.next();
         }
@@ -67,6 +61,7 @@ public class MouseClickHandler {
             selectionRow = row;
             selectionColumn = column;
             selectionOn = true;
+            Logger.trace("Selected: (%d,%d)".formatted(row, column));
             matrix.set(row, column, 's');
         }
     }
@@ -79,6 +74,7 @@ public class MouseClickHandler {
             matrix.set(row, column, turnHandler.player());
             changeSurroundings(row, column);
             selectionOn = false;
+            Logger.trace("Moved to: (%d,%d)".formatted(row, column));
             turnHandler.next();
         }
     }

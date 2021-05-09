@@ -7,27 +7,32 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import org.tinylog.Logger;
 import matrixRepresentation.BoardMatrix;
 import matrixRepresentation.MouseClickHandler;
 
 public class BoardGameController {
-
     private BoardMatrix matrix;
     private MouseClickHandler mouseClickHandler;
+    private NameInputHandler nameInputHandler;
 
     @FXML
     private GridPane board;
 
     @FXML
     private void initialize() {
+        nameInputHandler = new NameInputHandler();
+        nameInputHandler.askNames();
+
         for (int i = 0; i < board.getRowCount(); i++) {
             for (int j = 0; j < board.getColumnCount(); j++) {
                 var square = createSquare();
                 board.add(square, j, i);
             }
         }
-        this.matrix = new BoardMatrix(board.getRowCount(), board.getColumnCount());
-        this.mouseClickHandler = new MouseClickHandler(this.matrix);
+
+        matrix = new BoardMatrix(board.getRowCount(), board.getColumnCount());
+        mouseClickHandler = new MouseClickHandler(this.matrix);
         updateBoardFromMatrix(matrix);
     }
 
@@ -36,6 +41,7 @@ public class BoardGameController {
         StackPane square = (StackPane) event.getSource();
         int row = GridPane.getRowIndex(square);
         int column = GridPane.getColumnIndex(square);
+        Logger.trace("Click at: (%d,%d)".formatted(row, column));
         mouseClickHandler.handle(row, column);
         updateBoardFromMatrix(matrix);
     }
