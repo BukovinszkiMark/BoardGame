@@ -3,5 +3,11 @@
 }
 
 .square:hover {
-    -fx-background-color: whitesmoke;
+    -fx-background-color: #ffda00;
 }
+
+.wall {
+    -fx-border-style: solid;
+    -fx-background-color: black;
+}
+
