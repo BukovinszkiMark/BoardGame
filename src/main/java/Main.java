@@ -1,4 +1,4 @@
-import UI.BoardGameApplication;
+import ui.BoardGameApplication;
 import javafx.application.Application;
 
 public class Main {

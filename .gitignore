@@ -105,4 +105,11 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 .flattened-pom.xml
 
+
+#Manually added ones
+javacore.*
+core.*
+Snap.*
+
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,maven

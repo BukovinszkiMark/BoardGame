@@ -1,4 +1,4 @@
-package UI;
+package ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -12,11 +12,11 @@ import matrixRepresentation.BoardMatrix;
 import matrixRepresentation.MouseClickHandler;
 
 public class BoardGameController {
-    private BoardMatrix matrix;
+    public BoardMatrix matrix;
     private MouseClickHandler mouseClickHandler;
-    private NameInputHandler nameInputHandler;
+    public NameInputHandler nameInputHandler;
 
-    private boolean stopGameOverGEneration = false;
+    public boolean stopGameOverGEneration = false;
 
     @FXML
     private GridPane board;
@@ -46,6 +46,7 @@ public class BoardGameController {
         Logger.trace("Click at: (%d,%d)".formatted(row, column));
         mouseClickHandler.handle(row, column);
         updateBoardFromMatrix(matrix);
+        gameOverCheck();
     }
 
     private StackPane createSquare() {
@@ -71,10 +72,14 @@ public class BoardGameController {
                 case 's':{circle.setFill(Color.YELLOWGREEN);break;}
                 case 'w':{square.getStyleClass().set(0, "wall");break;}
             }
-            if(matrix.gameOverCheck(mouseClickHandler.turnHandler.player()) && !stopGameOverGEneration) {
-                GameOverHandler gameOverHandler = new GameOverHandler(mouseClickHandler.turnHandler.player(), nameInputHandler, matrix);
-                stopGameOverGEneration = true;
-            }
-            }
+
         }
     }
+
+    public void gameOverCheck() {
+        if(matrix.gameOverCheck(mouseClickHandler.turnHandler.player()) && !stopGameOverGEneration) {
+            stopGameOverGEneration = true;
+            GameOverHandler gameOverHandler = new GameOverHandler(mouseClickHandler.turnHandler.player(), this);
+        }
+    }
+}

@@ -1,4 +1,4 @@
-package UI;
+package ui;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -24,17 +24,17 @@ public class GameOverHandler {
     int winnerScore;
     int loserScore;
 
-    public GameOverHandler(char loser, NameInputHandler nameInputHandler, BoardMatrix boardMatrix) {
+    public GameOverHandler() { }
+
+    public GameOverHandler(char loser, BoardGameController boardGameController) {
         this.loser = loser;
         if (loser == 'r') {this.winner = 'b';}
         else if (loser == 'b') {this.winner = 'r';}
-        this.inputs = nameInputHandler;
-        this.matrix = boardMatrix;
+        this.inputs = boardGameController.nameInputHandler;
+        this.matrix = boardGameController.matrix;
         calculateScores();
         logResults();
-
-        //gameOverWindow();
-        //Currently not working for unknown reason
+        gameOverWindow(boardGameController);
     }
 
     public void calculateScores() {
@@ -75,7 +75,7 @@ public class GameOverHandler {
         Logger.trace("Loser is " + loserName + " with " + loserScore + "points.");
     }
 
-    public void gameOverWindow() {
+    public void gameOverWindow(BoardGameController boardGameController) {
         Stage stage = new Stage();
         stage.setTitle("Game Over!");
         Parent root = null;
@@ -93,6 +93,7 @@ public class GameOverHandler {
 
         newGame.setOnAction(t -> {
             matrix.toStartPosition();
+            boardGameController.stopGameOverGEneration = false;
             stage.close();
         }
         );
