@@ -46,14 +46,14 @@ public class BoardMatrix {
         boolean bool = true;
         for (int row = 0; row < 6; row++) {
             for (int column = 0; column < 6; column++) {
-                if (matrix[row][column] == player) {
+                if ((matrix[row][column] == player) || (matrix[row][column] == 's')) {
                     if (movePossible(row, column)) {
                         bool = false;
                     }
                 }
             }
         }
-        return bool;
+        return true;
     }
 
     public boolean movePossible(int row, int column){

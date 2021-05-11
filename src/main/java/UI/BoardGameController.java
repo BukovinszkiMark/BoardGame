@@ -10,11 +10,15 @@ import javafx.scene.shape.Circle;
 import org.tinylog.Logger;
 import matrixRepresentation.BoardMatrix;
 import matrixRepresentation.MouseClickHandler;
+import ui.GameOverHandler;
+import ui.NameInputHandler;
+import ui.SaveFileInputHandler;
 
 public class BoardGameController {
     public BoardMatrix matrix;
     private MouseClickHandler mouseClickHandler;
     public NameInputHandler nameInputHandler;
+    public SaveFileInputHandler saveFileInputHandler;
 
     public boolean stopGameOverGEneration = false;
 
@@ -23,6 +27,8 @@ public class BoardGameController {
 
     @FXML
     private void initialize() {
+        saveFileInputHandler = new SaveFileInputHandler();
+        saveFileInputHandler.askFile();
         nameInputHandler = new NameInputHandler();
         nameInputHandler.askNames();
 

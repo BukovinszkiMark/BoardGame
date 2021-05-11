@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.tinylog.Logger;
 
@@ -17,6 +18,8 @@ public class NameInputHandler {
     private TextField redInput;
     private TextField blueInput;
     private Button start;
+
+    public NameInputHandler() { }
 
     public void askNames() {
 
