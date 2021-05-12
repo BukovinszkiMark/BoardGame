@@ -1,17 +1,60 @@
 package jsonFileHandling;
 
+/**
+ * Class used to store information about the outcome of a match.
+ */
 public class MatchResultData {
+    /**
+     * Current date and time.
+     */
     public String dateTime;
+    /**
+     * Name of the red player.
+     */
     public String redName;
+    /**
+     * Name of the blue player.
+     */
     public String blueName;
+    /**
+     * Score of the red player.
+     */
     public int redScore;
+    /**
+     * Score of the blue player.
+     */
     public int blueScore;
+    /**
+     * Color of the winner.
+     */
     public char winnerColor;
+    /**
+     * Name of the winner.
+     */
     public String winnerName;
+    /**
+     * Score of the winner.
+     */
     public int winnerScore;
 
-    public MatchResultData(){ }
+    /**
+     * Creates a {@link MatchResultData} object.
+     */
+    public MatchResultData() {
+    }
 
+    /**
+     * Creates a {@link MatchResultData} object.
+     *
+     * @param dateTime    The current date and time.
+     * @param redName     Name of red player.
+     * @param blueName    NAme of blue player.
+     * @param redScore    Score of red Player.
+     * @param blueScore   Score of blue player.
+     * @param winnerColor Color of winner.
+     * @param winnerName  Name of winner.
+     * @param winnerScore Score of winner.
+     */
     public MatchResultData(String dateTime, String redName, String blueName, int redScore, int blueScore, char winnerColor, String winnerName, int winnerScore) {
         this.dateTime = dateTime;
         this.redName = redName;
@@ -23,67 +66,4 @@ public class MatchResultData {
         this.winnerScore = winnerScore;
     }
 
-    public String getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    public String getRedName() {
-        return redName;
-    }
-
-    public void setRedName(String redName) {
-        this.redName = redName;
-    }
-
-    public String getBlueName() {
-        return blueName;
-    }
-
-    public void setBlueName(String blueName) {
-        this.blueName = blueName;
-    }
-
-    public int getRedScore() {
-        return redScore;
-    }
-
-    public void setRedScore(int redScore) {
-        this.redScore = redScore;
-    }
-
-    public int getBlueScore() {
-        return blueScore;
-    }
-
-    public void setBlueScore(int blueScore) {
-        this.blueScore = blueScore;
-    }
-
-    public char getWinnerColor() {
-        return winnerColor;
-    }
-
-    public void setWinnerColor(char winnerColor) {
-        this.winnerColor = winnerColor;
-    }
-
-    public String getWinnerName() {
-        return winnerName;
-    }
-
-    public void setWinnerName(String winnerName) {
-        this.winnerName = winnerName;
-    }
-
-    public int getWinnerScore() {
-        return winnerScore;
-    }
-
-    public void setWinnerScore(int winnerScore) {
-        this.winnerScore = winnerScore;
-    }
 }

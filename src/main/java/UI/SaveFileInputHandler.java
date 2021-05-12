@@ -9,24 +9,38 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.File;
 
+/**
+ * Class for handling save file input from user.
+ */
 public class SaveFileInputHandler {
+    /**
+     * The file chosen by user.
+     */
     public File saveFile;
 
-    public SaveFileInputHandler() { }
+    /**
+     * Creates a {@link SaveFileInputHandler} object.
+     */
+    public SaveFileInputHandler() {
+    }
 
+    /**
+     * Creates windows and handles input.
+     */
     public void askFile() {
         Stage stage = new Stage();
         StackPane root = new StackPane();
         Button button = new Button("Choose save file (JSON)");
         button.setOnAction(t -> {
-             FileChooser chooser = new FileChooser();
-             saveFile = chooser.showOpenDialog(stage);
-             stage.close();
+            FileChooser chooser = new FileChooser();
+            saveFile = chooser.showOpenDialog(stage);
+            stage.close();
         });
         root.getChildren().add(button);
-        Scene scene = new Scene(root, 200,100);
+        Scene scene = new Scene(root, 200, 100);
         stage.setScene(scene);
         stage.setTitle("Choose save file");
         stage.showAndWait();
     }
 }
+

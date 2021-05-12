@@ -8,8 +8,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Class for Launching the application.
+ */
 public class BoardGameApplication extends Application {
-
+    /**
+     * Starts the application.
+     */
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/ui.fxml"));

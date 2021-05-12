@@ -11,16 +11,41 @@ import org.tinylog.Logger;
 
 import java.io.IOException;
 
+/**
+ * Class for handling names gives by players as input.
+ */
 public class NameInputHandler {
+    /**
+     * Name of the red player.
+     */
     public String redName;
+    /**
+     * Name of the blue player.
+     */
     public String blueName;
 
+    /**
+     * The field containing the red players input.
+     */
     private TextField redInput;
+    /**
+     * The field containing the blue players input.
+     */
     private TextField blueInput;
+    /**
+     * The button that starts the match.
+     */
     private Button start;
 
-    public NameInputHandler() { }
+    /**
+     * Creates a {@link NameInputHandler} object.
+     */
+    public NameInputHandler() {
+    }
 
+    /**
+     * Creates window and handles input.
+     */
     public void askNames() {
 
         Stage stage = new Stage();
