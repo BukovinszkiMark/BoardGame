@@ -5,20 +5,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="gameOverWindow" fx:controller="ui.GameOverHandler" prefHeight="257.0" prefWidth="519.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="gameOverWindow" prefHeight="257.0" prefWidth="519.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.GameOverHandler">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="-10.0" prefHeight="130.0" prefWidth="266.0" text="Game Over!" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="-10.0" prefHeight="130.0" prefWidth="266.0" text="Game Over!" textAlignment="CENTER">
          <font>
             <Font size="34.0" />
          </font>
       </Label>
-      <Label layoutX="116.0" layoutY="108.0" text="Start a new game or exit!">
+      <Label id="redLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="90.0" prefHeight="30.0" prefWidth="445.0" text="redLabel" textAlignment="CENTER">
          <font>
-            <Font size="26.0" />
+            <Font size="20.0" />
          </font>
       </Label>
       <Button id="newGameButton" layoutX="82.0" layoutY="182.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="91.0" text="New game" />
       <Button id="exitButton" layoutX="348.0" layoutY="182.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="91.0" text="Exit" />
+      <Label id="blueLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="129.0" prefHeight="30.0" prefWidth="461.0" text="blueLabel" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

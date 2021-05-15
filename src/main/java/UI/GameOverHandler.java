@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import jsonFileHandling.JsonReader;
 import jsonFileHandling.JsonWriter;
@@ -191,6 +192,7 @@ public class GameOverHandler {
         Stage stage = new Stage();
         stage.setTitle("Game Over!");
         Parent root = null;
+        Logger.debug(stage);
 
         try {
             root = FXMLLoader.load(getClass().getResource("/gameOverWindow.fxml"));
@@ -203,6 +205,11 @@ public class GameOverHandler {
         Button newGame = (Button) scene.lookup("#newGameButton");
         Button exit = (Button) scene.lookup("#exitButton");
 
+        Label redLabel = (Label) scene.lookup("#redLabel");
+        redLabel.setText(redName + "(Red): " + redScore + "points");
+        Label blueLabel = (Label) scene.lookup("#blueLabel");
+        blueLabel.setText(blueName + "(Blue): " + blueScore + "points");
+
         newGame.setOnAction(t -> {
                     matrix.toStartPosition();
                     boardGameController.stopGameOverGeneration = false;
@@ -211,6 +218,7 @@ public class GameOverHandler {
         );
 
         exit.setOnAction(t -> {
+                    stage.close();
                     Platform.exit();
                 }
         );
