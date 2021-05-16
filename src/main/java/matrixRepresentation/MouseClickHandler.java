@@ -1,6 +1,7 @@
 package matrixRepresentation;
 
 import org.tinylog.Logger;
+import ui.MainController;
 
 /**
  * Class used for handling mouse clicks.
@@ -36,11 +37,12 @@ public class MouseClickHandler {
     /**
      * Creates a {@link MouseClickHandler} object.
      *
-     * @param matrix The matrix representing the board.
+     * @param mainController The main controller of the application.
      */
-    public MouseClickHandler(BoardMatrix matrix) {
-        this.matrix = matrix;
-        this.turnHandler = new TurnHandler();
+    public MouseClickHandler(MainController mainController) {
+        this.matrix = mainController.matrix;
+        this.turnHandler = mainController.turnHandler;
+        Logger.debug("TurnHandler created in mouseclickhandler:" + turnHandler);
     }
 
     /**

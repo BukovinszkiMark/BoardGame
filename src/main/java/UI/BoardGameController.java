@@ -9,40 +9,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import org.tinylog.Logger;
 import matrixRepresentation.BoardMatrix;
-import matrixRepresentation.MouseClickHandler;
-import ui.GameOverHandler;
-import ui.NameInputHandler;
-import ui.SaveFileInputHandler;
+
 
 /**
  * Class acting as the main controller of the application.
  */
 public class BoardGameController {
 
-    /**
-     * A matrix representation of the board using a 2-dimensional array of chars.
-     */
-    public BoardMatrix matrix;
-
-    /**
-     * A sub-controller object handling the results of mouse clicks.
-     */
-    private MouseClickHandler mouseClickHandler;
-
-    /**
-     * A sub-controller object handling 2 player names as input from pop-up window.
-     */
-    public NameInputHandler nameInputHandler;
-
-    /**
-     * A sub-controller object handling a file as input from pop-up window.
-     */
-    public SaveFileInputHandler saveFileInputHandler;
-
-    /**
-     * A boolean to guarantee that only one GameOverHAndler will be generated.
-     */
-    public boolean stopGameOverGeneration = false;
+    private MainController mainController;
 
     @FXML
     private GridPane board;
@@ -52,10 +26,9 @@ public class BoardGameController {
      */
     @FXML
     private void initialize() {
-        saveFileInputHandler = new SaveFileInputHandler();
-        saveFileInputHandler.askFile();
-        nameInputHandler = new NameInputHandler();
-        nameInputHandler.askNames();
+        mainController = new MainController();
+        mainController.askFile();
+        mainController.askNames();
 
         for (int i = 0; i < board.getRowCount(); i++) {
             for (int j = 0; j < board.getColumnCount(); j++) {
@@ -64,9 +37,7 @@ public class BoardGameController {
             }
         }
 
-        matrix = new BoardMatrix();
-        mouseClickHandler = new MouseClickHandler(this.matrix);
-        updateBoardFromMatrix(matrix);
+        updateBoardFromMatrix(mainController.matrix);
     }
 
     /**
@@ -80,9 +51,9 @@ public class BoardGameController {
         int row = GridPane.getRowIndex(square);
         int column = GridPane.getColumnIndex(square);
         Logger.trace("Click at: (%d,%d)".formatted(row, column));
-        mouseClickHandler.handle(row, column);
-        updateBoardFromMatrix(matrix);
-        gameOverCheck();
+        mainController.handleMouseClick(row, column);
+        updateBoardFromMatrix(mainController.matrix);
+        mainController.gameOverCheck();
     }
 
     /**
@@ -135,13 +106,4 @@ public class BoardGameController {
         }
     }
 
-    /**
-     * Checks whether a legal move can be made by current player, and initiates game over handling if necessary.
-     */
-    private void gameOverCheck() {
-        if (matrix.gameOverCheck(mouseClickHandler.turnHandler.player()) && !stopGameOverGeneration) {
-            stopGameOverGeneration = true;
-            GameOverHandler gameOverHandler = new GameOverHandler(mouseClickHandler.turnHandler.player(), this);
-        }
-    }
 }

@@ -6,22 +6,21 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.File;
 
 /**
  * Class for handling save file input from user.
  */
-public class SaveFileInputHandler {
+public class SaveFileInputController {
     /**
      * The file chosen by user.
      */
     public File saveFile;
 
     /**
-     * Creates a {@link SaveFileInputHandler} object.
+     * Creates a {@link SaveFileInputController} object.
      */
-    public SaveFileInputHandler() {
+    public SaveFileInputController() {
     }
 
     /**

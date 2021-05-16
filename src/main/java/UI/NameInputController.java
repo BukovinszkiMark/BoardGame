@@ -5,7 +5,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.tinylog.Logger;
 
@@ -14,7 +13,7 @@ import java.io.IOException;
 /**
  * Class for handling names gives by players as input.
  */
-public class NameInputHandler {
+public class NameInputController {
     /**
      * Name of the red player.
      */
@@ -38,9 +37,9 @@ public class NameInputHandler {
     private Button start;
 
     /**
-     * Creates a {@link NameInputHandler} object.
+     * Creates a {@link NameInputController} object.
      */
-    public NameInputHandler() {
+    public NameInputController() {
     }
 
     /**

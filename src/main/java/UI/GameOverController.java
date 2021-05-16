@@ -11,6 +11,7 @@ import jsonFileHandling.JsonReader;
 import jsonFileHandling.JsonWriter;
 import jsonFileHandling.MatchResultData;
 import matrixRepresentation.BoardMatrix;
+import matrixRepresentation.TurnHandler;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -21,17 +22,19 @@ import java.util.ArrayList;
 /**
  * Class for handling a Game Over situation.
  */
-public class GameOverHandler {
+public class GameOverController {
+
+    private TurnHandler turnHandler;
 
     /**
      * Object containing the names of players.
      */
-    private NameInputHandler nameInputs;
+    private NameInputController nameInputs;
 
     /**
      * Object containing the file used for saving results.
      */
-    private SaveFileInputHandler fileInput;
+    private SaveFileInputController fileInput;
 
     /**
      * Object representing the board with a 2-dimensional array.
@@ -89,28 +92,29 @@ public class GameOverHandler {
     public int winnerScore;
 
     /**
-     * Creates a {@link GameOverHandler} object.
+     * Creates a {@link GameOverController} object.
      */
-    public GameOverHandler() {
+    public GameOverController() {
     }
 
     /**
-     * Creates a {@link GameOverHandler} object.
+     * Creates a {@link GameOverController} object.
      *
-     * @param losingTurn          The turn where game over handling was initiated.
-     * @param boardGameController The main controller of the application.
+     * @param losingTurn The turn where game over handling was initiated.
+     * @param mainController The main controller of the application.
      */
-    public GameOverHandler(char losingTurn, BoardGameController boardGameController) {
-        this.losingTurn = losingTurn;
-        this.fileInput = boardGameController.saveFileInputHandler;
-        this.nameInputs = boardGameController.nameInputHandler;
+    public GameOverController(char losingTurn, MainController mainController) {
+        this.turnHandler = mainController.turnHandler;
+        this.losingTurn = turnHandler.player();
+        this.fileInput = mainController.saveFileInputController;
+        this.nameInputs = mainController.nameInputController;
         redName = nameInputs.redName;
         blueName = nameInputs.blueName;
-        this.matrix = boardGameController.matrix;
+        this.matrix = mainController.matrix;
         calculateScores();
         logResults();
         saveResults();
-        gameOverWindow(boardGameController);
+        gameOverWindow(mainController);
     }
 
     /**
@@ -186,9 +190,9 @@ public class GameOverHandler {
     /**
      * Creates a window that appears after a game over.
      *
-     * @param boardGameController The main controller of the application.
+     * @param mainController The main controller of the application.
      */
-    public void gameOverWindow(BoardGameController boardGameController) {
+    public void gameOverWindow(MainController mainController) {
         Stage stage = new Stage();
         stage.setTitle("Game Over!");
         Parent root = null;
@@ -212,7 +216,7 @@ public class GameOverHandler {
 
         newGame.setOnAction(t -> {
                     matrix.toStartPosition();
-                    boardGameController.stopGameOverGeneration = false;
+                    mainController.stopGameOverGeneration = false;
                     stage.close();
                 }
         );
