@@ -113,7 +113,7 @@ public class GameOverController {
         this.matrix = mainController.matrix;
         calculateScores();
         logResults();
-        saveResults();
+        if (fileInput.saveFile != null) {saveResults();}
         gameOverWindow(mainController);
     }
 

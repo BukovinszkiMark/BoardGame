@@ -3,7 +3,6 @@ package ui;
 import matrixRepresentation.BoardMatrix;
 import matrixRepresentation.MouseClickHandler;
 import matrixRepresentation.TurnHandler;
-import org.tinylog.Logger;
 
 /**
  * Class for controlling other sub-controllers.
@@ -55,7 +54,6 @@ public class MainController {
         matrix = new BoardMatrix();
         turnHandler = new TurnHandler();
         mouseClickHandler = new MouseClickHandler(this);
-        Logger.debug("TurnHandler created in main:" + turnHandler);
     }
 
     /**
