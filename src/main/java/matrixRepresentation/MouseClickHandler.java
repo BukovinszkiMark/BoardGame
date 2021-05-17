@@ -42,7 +42,6 @@ public class MouseClickHandler {
     public MouseClickHandler(MainController mainController) {
         this.matrix = mainController.matrix;
         this.turnHandler = mainController.turnHandler;
-        Logger.debug("TurnHandler created in mouseclickhandler:" + turnHandler);
     }
 
     /**

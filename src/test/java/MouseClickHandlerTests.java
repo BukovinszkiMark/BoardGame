@@ -1,6 +1,7 @@
 import matrixRepresentation.BoardMatrix;
 import matrixRepresentation.MouseClickHandler;
 import org.junit.jupiter.api.Test;
+import ui.BoardGameController;
 import ui.MainController;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,7 +14,7 @@ public class MouseClickHandlerTests {
 
     @Test
     public void tests(){
-        mainController = new MainController();
+        mainController = new MainController(new BoardGameController());
         matrix = mainController.matrix;
         mouseClickHandler = new MouseClickHandler(mainController);
 

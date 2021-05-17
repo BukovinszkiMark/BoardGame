@@ -28,7 +28,6 @@
       */
      public JsonReader(File file) {
          if (file==null) {Logger.error("No file choosen!");}
-          Logger.debug(file);
           try{
               loadData(file);
           } catch(IOException e) {

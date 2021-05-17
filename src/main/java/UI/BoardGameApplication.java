@@ -13,6 +13,7 @@ import java.io.IOException;
  * Class for Launching the application.
  */
 public class BoardGameApplication extends Application {
+
     /**
      * Starts the application.
      */
@@ -24,8 +25,8 @@ public class BoardGameApplication extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.setHeight(700);
-        stage.setWidth(700);
+        stage.setHeight(675);
+        stage.setWidth(600);
         stage.show();
     }
 

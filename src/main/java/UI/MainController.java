@@ -11,6 +11,11 @@ import org.tinylog.Logger;
 public class MainController {
 
     /**
+     * The controller of the board.
+     */
+    public BoardGameController boardGameController;
+
+    /**
      * A matrix representation of the board using a 2-dimensional array of chars.
      */
     public BoardMatrix matrix;
@@ -42,8 +47,11 @@ public class MainController {
 
     /**
      * Creates a {@link MainController} object.
+     *
+     * @param boardGameController The controller of the board.
      */
-    public MainController() {
+    public MainController(BoardGameController boardGameController) {
+        this.boardGameController = boardGameController;
         matrix = new BoardMatrix();
         turnHandler = new TurnHandler();
         mouseClickHandler = new MouseClickHandler(this);
@@ -71,8 +79,7 @@ public class MainController {
      */
     public void gameOverCheck() {
         if (matrix.gameOverCheck(turnHandler.player()) && !stopGameOverGeneration) {
-            stopGameOverGeneration = true;
-            GameOverController gameOverController = new GameOverController(turnHandler.player(), this);
+            startGameOver();
         }
     }
 
@@ -84,6 +91,14 @@ public class MainController {
      */
     public void handleMouseClick(int row, int column) {
         mouseClickHandler.handle(row, column);
+    }
+
+    /**
+     * Starts a game over.
+     */
+    public void startGameOver() {
+        stopGameOverGeneration = true;
+        GameOverController gameOverController = new GameOverController(turnHandler.player(), this);
     }
 
 }

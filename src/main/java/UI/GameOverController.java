@@ -159,10 +159,14 @@ public class GameOverController {
             winnerName = nameInputs.redName;
             loserName = nameInputs.blueName;
             winnerScore = redScore;
-            Logger.debug("first" + winnerScore);
             loserScore = blueScore;
         } else if (loserColor == 'b') {
-
+            winnerColor = 'b';
+            loserColor = 'r';
+            winnerName = nameInputs.blueName;
+            loserName = nameInputs.redName;
+            winnerScore = blueScore;
+            loserScore = redScore;
         }
     }
 
@@ -196,7 +200,6 @@ public class GameOverController {
         Stage stage = new Stage();
         stage.setTitle("Game Over!");
         Parent root = null;
-        Logger.debug(stage);
 
         try {
             root = FXMLLoader.load(getClass().getResource("/gameOverWindow.fxml"));
@@ -215,7 +218,10 @@ public class GameOverController {
         blueLabel.setText(blueName + "(Blue): " + blueScore + "points");
 
         newGame.setOnAction(t -> {
+                    if (loserColor == turnHandler.player()){turnHandler.next();}
                     matrix.toStartPosition();
+                    mainController.boardGameController.updateNextMove(turnHandler.player());
+                    mainController.boardGameController.updateBoardFromMatrix(matrix);
                     mainController.stopGameOverGeneration = false;
                     stage.close();
                 }
